@@ -12,10 +12,6 @@
                 $this -> password,
                 $this -> db
             );
-
-            if($this -> koneksi) {
-                echo 'berhasil';
-            }
         }
 
         function update_last_login($id) {
@@ -43,6 +39,17 @@
 
            
         }
+
+        function logout() {
+            $_SESSION['is_login'] = false;
+            session_start();
+            session_unset();
+            session_destroy();
+            setcookie('username', '', 0, '/');
+            setcookie('id', '', 0, '/');
+            session_destroy();
+ 
+         }
             
     }
 ?>

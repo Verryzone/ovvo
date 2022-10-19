@@ -5,7 +5,7 @@
     $db = new database();
 
     if(isset($_SESSION['is_login'])) {
-        header("Location: home.php");
+        header("Location: page/home.php");
     }
 
     if(isset($_REQUEST['login'])){
@@ -22,6 +22,8 @@
         }else {
             header("location: login.php?pesan=gagal");
         }
+
+        
     }
 
 ?>
