@@ -21,22 +21,28 @@ date_default_timezone_set('Asia/Jakarta');
         }
 
         function login($username, $password) {
-           $query = mysqli_query($this -> koneksi, "SELECT * FROM user_right WHERE username = '$username' AND password = '$password'");
-           $data = $query -> fetch_array();
-           $jml = $query -> num_rows;
+            $query = mysqli_query($this -> koneksi, "SELECT * FROM user_right WHERE username = '$username'");
+            // $query = mysqli_query($this -> koneksi, "SELECT * FROM user_right WHERE username = '$username' AND password = '$password'");
+            // list($nama, $username, $pw) = mysqli_fetch_array($query);
+            $data = $query -> fetch_array();
+            $jml = $query -> num_rows;
 
-           if($jml == 1) {
-            setcookie('username', $username, time() + (60 * 60 * 24 * 5), '/');
-            setcookie('id', $data['id'], time() + (60 * 60 * 24 * 5), '/');
-            $_SESSION['username'] = $username;
-            $_SESSION['id'] = $data['id'];
-            $_SESSION['type'] = $data['type'];
-            $_SESSION['is_login'] = true;
+            if($jml > 0) {
+                $verif = password_verify($password, '$2y$10$h3u4XZ4Q7sN53MeKvf91fuP');
+                echo $verif;
+                if($verif) {
+                    setcookie('username', $username, time() + (60 * 60 * 24 * 5), '/');
+                    setcookie('id', $data['id'], time() + (60 * 60 * 24 * 5), '/');
+                    $_SESSION['username'] = $username;
+                    $_SESSION['id'] = $data['id'];
+                    $_SESSION['type'] = $data['type'];
+                    $_SESSION['is_login'] = true;
 
-            $this -> update_last_login($data['id']);
-            return true;
+                    $this -> update_last_login($data['id']);
+                    return true;
+                }
            } else {
-                return false;
+               return false;
            }
 
            
@@ -97,4 +103,3 @@ date_default_timezone_set('Asia/Jakarta');
             return true;
          }
     }
-?>
