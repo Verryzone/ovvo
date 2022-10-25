@@ -8,7 +8,7 @@
         $nama = $_POST['nama'];
         $username = $_POST['username'];
         $pw = $_POST['password'];
-        $password = password_hash($pw, PASSWORD_DEFAULT);
+        $password = md5($pw);
         $type = $_POST['type'];
 
         $today = date('Y-m-d H:i:s');
@@ -29,24 +29,24 @@
         if ($data['password'] == $_POST['password']) {
             $password = $_POST['password'];
         } else {
-            $password = password_hash($pw, PASSWORD_DEFAULT);
+            $password = md5($pw);
         }
 
         $update = $db->edit_user($_GET['id'], $name, $username, $password, $type);
 
-        if ($update) {
-            echo "
-                <script> 
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Berhasil...',
-                        text: 'Data berhasil di edit',
-                    })
-                </script>
-            ";
-            header('Location: ../home.php?page=user_right&alert=edit');
+        // if ($update) {
+        //     echo "
+        //         <script> 
+        //             Swal.fire({
+        //                 icon: 'success',
+        //                 title: 'Berhasil...',
+        //                 text: 'Data berhasil di edit',
+        //             })
+        //         </script>
+        //     ";
+        //     header('Location: ../home.php?page=user_right&alert=edit');
 
-        }
+        // }
 
     } else if ($aksi == 'hapus') {
         $db->hapus_user($_GET['id']);

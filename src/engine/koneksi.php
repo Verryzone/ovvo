@@ -20,17 +20,15 @@ date_default_timezone_set('Asia/Jakarta');
             $woo = '' .$id;
         }
 
-        function login($username, $password) {
-            $query = mysqli_query($this -> koneksi, "SELECT * FROM user_right WHERE username = '$username'");
-            // $query = mysqli_query($this -> koneksi, "SELECT * FROM user_right WHERE username = '$username' AND password = '$password'");
-            // list($nama, $username, $pw) = mysqli_fetch_array($query);
+        function login($username, $pw) {
+            $password = md5($pw);
+
+            $query = mysqli_query($this -> koneksi, "SELECT * FROM user_right WHERE username = '$username' AND password = '$password'");
             $data = $query -> fetch_array();
             $jml = $query -> num_rows;
 
             if($jml > 0) {
-                $verif = password_verify($password, '$2y$10$h3u4XZ4Q7sN53MeKvf91fuP');
-                echo $verif;
-                if($verif) {
+                // if($password == $data['password']) {
                     setcookie('username', $username, time() + (60 * 60 * 24 * 5), '/');
                     setcookie('id', $data['id'], time() + (60 * 60 * 24 * 5), '/');
                     $_SESSION['username'] = $username;
@@ -40,7 +38,7 @@ date_default_timezone_set('Asia/Jakarta');
 
                     $this -> update_last_login($data['id']);
                     return true;
-                }
+                // }
            } else {
                return false;
            }
