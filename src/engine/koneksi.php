@@ -22,7 +22,9 @@ date_default_timezone_set('Asia/Jakarta');
 
         function login($username, $pw) {
             $password = md5($pw);
-
+            // echo "<pre>";
+            // var_dump($password);
+            // die;
             $query = mysqli_query($this -> koneksi, "SELECT * FROM user_right WHERE username = '$username' AND password = '$password'");
             $data = $query -> fetch_array();
             $jml = $query -> num_rows;
@@ -31,7 +33,7 @@ date_default_timezone_set('Asia/Jakarta');
                 // if($password == $data['password']) {
                     setcookie('username', $username, time() + (60 * 60 * 24 * 5), '/');
                     setcookie('id', $data['id'], time() + (60 * 60 * 24 * 5), '/');
-                    $_SESSION['username'] = $username;
+                    $_SESSION['username'] = $data['nama'];
                     $_SESSION['id'] = $data['id'];
                     $_SESSION['type'] = $data['type'];
                     $_SESSION['is_login'] = true;
@@ -64,6 +66,13 @@ date_default_timezone_set('Asia/Jakarta');
 
          function tampil_user() {
             $query = mysqli_query($this -> koneksi, "SELECT * FROM user_right");
+            while ($row = mysqli_fetch_array($query)){
+                $data[] = $row;
+            }
+            return $data;
+         }
+         function tampil_dokter() {
+            $query = mysqli_query($this -> koneksi, "SELECT * FROM dokter");
             while ($row = mysqli_fetch_array($query)){
                 $data[] = $row;
             }

@@ -34,19 +34,19 @@
 
         $update = $db->edit_user($_GET['id'], $name, $username, $password, $type);
 
-        // if ($update) {
-        //     echo "
-        //         <script> 
-        //             Swal.fire({
-        //                 icon: 'success',
-        //                 title: 'Berhasil...',
-        //                 text: 'Data berhasil di edit',
-        //             })
-        //         </script>
-        //     ";
-        //     header('Location: ../home.php?page=user_right&alert=edit');
+        if ($update) {
+            // echo "
+            //     <script> 
+            //         Swal.fire({
+            //             icon: 'success',
+            //             title: 'Berhasil...',
+            //             text: 'Data berhasil di edit',
+            //         })
+            //     </script>
+            // ";
+            header('Location: ../home.php?page=user_right&alert=edit');
 
-        // }
+        }
 
     } else if ($aksi == 'hapus') {
         $db->hapus_user($_GET['id']);

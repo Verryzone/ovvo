@@ -28,12 +28,12 @@
 <center>
   <br>
   <div style="padding-bottom: 10px; ;">
-    <h1 style="font-size: 50px;" class="font-bold">Data User</h1>
+    <h1 style="font-size: 50px;" class="font-bold">Data Dokter</h1>
   </div>
 </center>
 <div class="md:px-16 px-5">
   <div style="padding-bottom: 10px;">
-    <a href="home.php?page=tambah_user">
+    <a href="home.php?page=tambah_dokter">
       <button style="border: 0;" class="btn btn-primary font-semibold bg-slate-300 hover:bg-teal-500">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
           <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
@@ -45,37 +45,63 @@
   </div>
   <div class="shadow-2xl">
     <div class="overflow-x-auto">
-      <table id="myTable" class="table hover table-compact w-full text-center">
+      <table id="myTable" class="table table-compact w-full text-center">
         <thead>
-          <tr >
+          <tr>
             <th style="text-align: center;">No</th>
-            <th style="text-align: center;">Code</th>
-            <th style="text-align: center;">Name</th>
-            <th style="text-align: center;">Username</th>
-            <th style="text-align: center;">Type</th>
-            <th style="text-align: center;">Register</th>
-            <th style="text-align: center;">Last Login</th>
+            <th style="text-align: center;">Kode</th>
+            <th style="text-align: center;">Nama</th>
+            <th style="text-align: center;">Alamat</th>
+            <th style="text-align: center;">Tempat Lahir</th>
+            <th style="text-align: center;">Tanggal Lahir</th>
+            <th style="text-align: center;">Jenis Kelamin</th>
+            <th style="text-align: center;">Agama</th>
+            <th style="text-align: center;">No. Telp</th>
+            <th style="text-align: center;">Status Nikah</th>
+            <th style="text-align: center;">No. Izin</th>
             <th style="text-align: center;">Action</th>
           </tr>
         </thead>
         <tbody>
           <?php
-          $data = $db->tampil_user();
+          $data = $db->tampil_dokter();
 
           $no = 1;
           foreach ($data as $row) :
 
-            $type = $row['type'];
-            if ($type == 'A1') {
-              $tipe = 'SuperAdmin';
-            } else if ($type == 'D2') {
-              $tipe = 'Dokter';
-            } else if ($type == 'P3') {
-              $tipe = 'Pasien';
-            } else if ($type == 'P0') {
-              $tipe = 'Poli';
-            } else {
-              $tipe = 'BLOKIR!!';
+            $kel = $row['jenis_kelamin'];
+            if($kel == 'L') {
+                $kelamin = 'Laki-Laki';
+            }else if($kel == 'P'){
+                $kelamin = 'Perempuan';
+            }
+            // islam = 1
+            // kristen = 2
+            // katolik  = 3
+            // hindu = 4
+            // budha = 5
+            // konghucu = 6
+
+            $ag = $row['agama'];
+            if($ag == '1') {
+                $agama = 'Islam';
+            }else if($ag == '2'){
+                $agama = 'Kristen';
+            }else if($ag == '3'){
+                $agama = 'Katolik';
+            }else if($ag == '4'){
+                $agama = 'Hindu';
+            }else if($ag == '5'){
+                $agama = 'Budha';
+            }else if($ag == '6'){
+                $agama = 'Konghuchu';
+            }
+
+            $sn = $row['status_nikah'];
+            if($sn == 'S') {
+                $nikah = 'Sudah Menikah';
+            } else if ($sn = 'B') {
+                $nikah = "Belum Menikah";
             }
           ?>
             <tr>
@@ -83,12 +109,16 @@
               <th><?= $no++ ?></th>
               <td><?= $row['kode'] ?></td>
               <td><?= $row['nama'] ?></td>
-              <td><?= $row['username'] ?></td>
-              <td><?= $tipe ?></td>
-              <td><?= $row['register'] ?></td>
-              <td><?= $row['last_login'] ?></td>
+              <td><?= $row['alamat'] ?></td>
+              <td><?= $row['tempat_lahir'] ?></td>
+              <td><?= $row['tgl_lahir'] ?></td>
+              <td><?= $kelamin ?></td>
+              <td><?= $agama ?></td>
+              <td><?= $row['telp'] ?></td>
+              <td><?= $nikah ?></td>
+              <td><?= $row['no_izin'] ?></td>
               <td>
-                <a class="btn" style="background:transparent ; color: black; border: 0; height: min-content;" href="../page/home.php?page=edit_user&id=<?= $row['id']; ?>">
+                <a class="btn" style="background:transparent ; color: black; border: 0; height: min-content;" href="../page/home.php?page=edit_dokter&id=<?= $row['id']; ?>">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
@@ -131,24 +161,4 @@
     })
     return false;
   });
-
-  // function hapus() {
-  //   Swal.fire({
-  //     title: 'Apa kamu yakin?',
-  //     text: "data yang dihapus akan hilang!",
-  //     icon: 'warning',
-  //     showCancelButton: true,
-  //     confirmButtonColor: '#3085d6',
-  //     cancelButtonColor: '#d33',
-  //     confirmButtonText: 'Ya, hapus!'
-  //   }).then((result) => {
-  //     if (result.isConfirmed) {
-  //       Swal.fire(
-  //         'Terhapus!',
-  //         'Data telah terhapus.',
-  //         'success'
-  //       )
-  //     }
-  //   })
-  // }
 </script>
