@@ -79,10 +79,30 @@ date_default_timezone_set('Asia/Jakarta');
             return $data;
          }
 
+         function tampil_dokter_by_name($name) {
+            $query = mysqli_query($this -> koneksi, "SELECT * FROM dokter WHERE nama LIKE '%" . $name . "%'");
+            return $query;
+         }
+         function tampil_pasien_by_name($name) {
+            $query = mysqli_query($this -> koneksi, "SELECT * FROM pasien WHERE nama LIKE '%" . $name . "%'");
+            return $query;
+         }
+         function tampil_poli_by_name($name) {
+            $query = mysqli_query($this -> koneksi, "SELECT * FROM poli WHERE nama LIKE '%" . $name . "%'");
+            return $query;
+         }
+
          function tambah_user($kode, $nama, $username, $password, $type) {
             $today = date("Y-m-d H:i:s");
             mysqli_query($this -> koneksi, "INSERT INTO user_right (kode, nama, username, password, type, register) 
             VALUES ('$kode', '$nama', '$username', '$password', '$type', '$today')");
+            
+         }
+
+         function tambah_dokter($kode, $nama, $alamat, $tempat_lahir, $tgl_lahir, $agama, $telp, $status_nikah, $no_izin) {
+            // $today = date("Y-m-d H:i:s");
+            mysqli_query($this -> koneksi, "INSERT INTO dokter (kode, nama, alamat, tempat_lahir, tgl_lahir, agama, telp, status_nikah, no_izin) 
+            VALUES ('$kode', '$nama', '$alamat', '$tempat_lahir', '$tgl_lahir', '$agama', '$telp', '$status_nikah', '$no_izin')");
             
          }
 
@@ -93,8 +113,20 @@ date_default_timezone_set('Asia/Jakarta');
             return $data;
          }
 
+         function tampil_dokter_by_id($id) {
+            $kode = mysqli_query($this -> koneksi, "SELECT * FROM dokter WHERE id = '$id'");
+            $data = mysqli_fetch_array($kode);
+
+            return $data;
+         }
+
          function hapus_user($id) {
             mysqli_query($this -> koneksi, "DELETE FROM user_right WHERE id = '$id'");
+            return true;
+         }
+
+         function hapus_dokter($id) {
+            mysqli_query($this -> koneksi, "DELETE FROM dokter WHERE id = '$id'");
             return true;
          }
 
@@ -104,6 +136,22 @@ date_default_timezone_set('Asia/Jakarta');
                 username = '$username',
                 password = '$password',
                 type = '$type'
+
+                WHERE id='$id'
+            ");
+            return true;
+         }
+
+         function edit_dokter($id, $nama, $alamat, $tempat_lahir, $tgl_lahir, $agama, $telp, $status_nikah, $no_izin) {
+            mysqli_query($this -> koneksi, "UPDATE dokter SET 
+                nama = '$nama',
+                alamat = '$alamat',
+                tempat_lahir = '$tempat_lahir',
+                tgl_lahir = '$tgl_lahir',
+                agama = '$agama',
+                telp = '$telp',
+                status_nikah = '$status_nikah',
+                no_izin = '$no_izin'
 
                 WHERE id='$id'
             ");

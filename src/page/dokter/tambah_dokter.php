@@ -18,37 +18,37 @@
     <div>
         <div class="shadow-2xl">
             <div class="px-10 py-10">
-                <form action="user/proses.php?aksi=tambah" method="post">
+                <form action="dokter/proses.php?aksi=tambah" method="post">
                     <div class="gap-0 grid justify-items-center w-full md:grid-cols-2 gap-x-10 grid-cols-1">
                         <div class="form-control w-full max-w-xl">
                             <label class="label">
                                 <span class="label-text">Nama</span>
                             </label>
-                            <input type="text" placeholder="" class="input input-bordered w-full max-w-xl" />
+                            <input name="nama" type="text" placeholder="" class="input input-bordered w-full max-w-xl" required/>
                         </div>
                         <div class="form-control w-full max-w-xl">
                             <label class="label">
                                 <span class="label-text">Alamat</span>
                             </label>
-                            <input type="text" placeholder="" class="input input-bordered w-full max-w-xl" />
+                            <input name="alamat" type="text" placeholder="" class="input input-bordered w-full max-w-xl" required/>
                         </div>
                         <div class="form-control w-full max-w-xl">
                             <label class="label">
                                 <span class="label-text">Tempat Lahir</span>
                             </label>
-                            <input type="text" placeholder="" class="input input-bordered w-full max-w-xl" />
+                            <input name="tempat_lahir" type="text" placeholder="" class="input input-bordered w-full max-w-xl" required/>
                         </div>
                         <div class="form-control w-full max-w-xl">
                             <label class="label">
                                 <span class="label-text">Tanggal Lahir</span>
                             </label>
-                            <input type="date" placeholder="" class="input input-bordered w-full max-w-xl" />
+                            <input name="tgl_lahir" type="date" placeholder="" class="input input-bordered w-full max-w-xl" required/>
                         </div>
                         <div class="form-control w-full max-w-xl">
                             <label class="label">
                                 <span class="label-text">Jenis Kelamin</span>
                             </label>
-                            <select class="select w-full" name="type" id="types" required>
+                            <select name="jenis_kelamin" class="select w-full" name="type" id="types" required>
                                 <option value="L">Laki-Laki</option>
                                 <option value="P">Perempuan</option>
                             </select>
@@ -57,19 +57,29 @@
                             <label class="label">
                                 <span class="label-text">Agama</span>
                             </label>
-                            <input type="text" placeholder="" class="input input-bordered w-full max-w-xl" />
+                            <select name="agama" class="select w-full" required>
+                                <option value="1">Islam</option>
+                                <option value="2">Kristen</option>
+                                <option value="3">Katholik</option>
+                                <option value="4">Hindu</option>
+                                <option value="5">Budha</option>
+                                <option value="6">Konghuchu</option>
+                            </select>
                         </div>
                         <div class="form-control w-full max-w-xl">
                             <label class="label">
                                 <span class="label-text">No. Telp</span>
                             </label>
-                            <input type="text" placeholder="" class="input input-bordered w-full max-w-xl" />
+                            <input name="telp" type="text" placeholder="" class="input input-bordered w-full max-w-xl" required/>
                         </div>
                         <div class="form-control w-full max-w-xl">
                             <label class="label">
                                 <span class="label-text">Status Nikah</span>
                             </label>
-                            <input type="text" placeholder="" class="input input-bordered w-full max-w-xl" />
+                            <select name="status_nikah" class="select w-full" required>
+                                <option value="S">Sudah Menikah</option>
+                                <option value="B">Belum Menikah</option>
+                            </select>
                         </div>
 
                     </div>
@@ -78,7 +88,7 @@
                             <label class="label">
                                 <span class="label-text">No. Izin</span>
                             </label>
-                            <input type="text" placeholder="" class="input input-bordered w-full max-w-xl" />
+                            <input name="no_izin" type="text" placeholder="" class="input input-bordered w-full max-w-xl" />
                         </div>
                         <div class="form-control w-full my-6 px-40">
                             <button type="submit" name="simpan" style="border: 0;" class="btn btn-primary bg-slate-300 hover:bg-teal-500">
