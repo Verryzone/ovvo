@@ -79,6 +79,14 @@ date_default_timezone_set('Asia/Jakarta');
             return $data;
          }
 
+         function tampil_pasien() {
+            $query = mysqli_query($this -> koneksi, "SELECT * FROM pasien");
+            while ($row = mysqli_fetch_array($query)){
+                $data[] = $row;
+            }
+            return $data;
+         }
+
          function tampil_dokter_by_name($name) {
             $query = mysqli_query($this -> koneksi, "SELECT * FROM dokter WHERE nama LIKE '%" . $name . "%'");
             return $query;

@@ -5,7 +5,7 @@
 <center>
     <br>
     <div style="padding-bottom: 10px; ;">
-        <h1 style="font-size: 50px;" class="font-bold">Edit Data Dokter</h1>
+        <h1 style="font-size: 50px;" class="font-bold">Tambah Data Dokter</h1>
     </div>
 </center>
 <div class="md:px-16 px-5">
