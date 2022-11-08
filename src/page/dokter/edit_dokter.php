@@ -53,8 +53,8 @@
                                 <span class="label-text">Jenis Kelamin</span>
                             </label>
                             <select value="<?= $data['jenis_kelamin']; ?>" name="jenis_kelamin" class="select w-full" name="type" id="types" required>
-                                <option value="L">Laki-Laki</option>
-                                <option value="P">Perempuan</option>
+                                <option <?php if($data['jenis_kelamin'] == 'L') {echo 'selected';} ?> value="L">Laki-Laki</option>
+                                <option <?php if($data['jenis_kelamin'] == 'P') {echo 'selected';} ?> value="P">Perempuan</option>
                             </select>
                         </div>
                         <div class="form-control w-full max-w-xl">

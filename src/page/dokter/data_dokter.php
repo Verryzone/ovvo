@@ -48,18 +48,18 @@
       <table id="myTable" class="table table-compact w-full text-center">
         <thead>
           <tr>
-            <th style="text-align: center;">No</th>
-            <th style="text-align: center;">Kode</th>
-            <th style="text-align: center;">Nama</th>
-            <th style="text-align: center;">Alamat</th>
-            <th style="text-align: center;">Tempat Lahir</th>
-            <th style="text-align: center;">Tanggal Lahir</th>
-            <th style="text-align: center;">Jenis Kelamin</th>
-            <th style="text-align: center;">Agama</th>
-            <th style="text-align: center;">No. Telp</th>
-            <th style="text-align: center;">Status Nikah</th>
-            <th style="text-align: center;">No. Izin</th>
-            <th style="text-align: center;">Action</th>
+            <th class="bg-green-200 style="text-align: center;">No</th>
+            <th class="bg-green-200 style="text-align: center;">Kode</th>
+            <th class="bg-green-200 style="text-align: center;">Nama</th>
+            <th class="bg-green-200 style="text-align: center;">Alamat</th>
+            <th class="bg-green-200 style="text-align: center;">Tempat Lahir</th>
+            <th class="bg-green-200 style="text-align: center;">Tanggal Lahir</th>
+            <th class="bg-green-200 style="text-align: center;">Jenis Kelamin</th>
+            <th class="bg-green-200 style="text-align: center;">Agama</th>
+            <th class="bg-green-200 style="text-align: center;">No. Telp</th>
+            <th class="bg-green-200 style="text-align: center;">Status Nikah</th>
+            <th class="bg-green-200 style="text-align: center;">No. Izin</th>
+            <th class="bg-green-200 style="text-align: center;">Action</th>
           </tr>
         </thead>
         <tbody>

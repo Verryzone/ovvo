@@ -17,7 +17,8 @@ date_default_timezone_set('Asia/Jakarta');
         }
 
         function update_last_login($id) {
-            $woo = '' .$id;
+         $today = date("Y-m-d H:i:s");
+            mysqli_query($this -> koneksi, "UPDATE user_right SET last_login = '$today' WHERE id='$id'");
         }
 
         function login($username, $pw) {
@@ -104,14 +105,24 @@ date_default_timezone_set('Asia/Jakarta');
             $today = date("Y-m-d H:i:s");
             mysqli_query($this -> koneksi, "INSERT INTO user_right (kode, nama, username, password, type, register) 
             VALUES ('$kode', '$nama', '$username', '$password', '$type', '$today')");
-            
+
+            return true;
          }
 
-         function tambah_dokter($kode, $nama, $alamat, $tempat_lahir, $tgl_lahir, $agama, $telp, $status_nikah, $no_izin) {
+         function tambah_dokter($kode, $nama, $alamat, $tempat_lahir, $tgl_lahir, $jenis_kelamin, $agama, $telp, $status_nikah, $no_izin) {
             // $today = date("Y-m-d H:i:s");
-            mysqli_query($this -> koneksi, "INSERT INTO dokter (kode, nama, alamat, tempat_lahir, tgl_lahir, agama, telp, status_nikah, no_izin) 
-            VALUES ('$kode', '$nama', '$alamat', '$tempat_lahir', '$tgl_lahir', '$agama', '$telp', '$status_nikah', '$no_izin')");
-            
+            mysqli_query($this -> koneksi, "INSERT INTO dokter (kode, nama, alamat, tempat_lahir, tgl_lahir, jenis_kelamin, agama, telp, status_nikah, no_izin) 
+            VALUES ('$kode', '$nama', '$alamat', '$tempat_lahir', '$tgl_lahir', '$jenis_kelamin', '$agama', '$telp', '$status_nikah', '$no_izin')");
+
+            return true;
+         }
+
+         function tambah_pasien($kode, $nama, $alamat, $tempat_lahir, $tgl_lahir, $jenis_kelamin, $agama, $telp, $status_nikah, $pekerjaan, $tgl_daftar, $diagnosa, $alergi, $jenis_kunjungan) {
+            // $today = date("Y-m-d H:i:s");
+            mysqli_query($this -> koneksi, "INSERT INTO pasien (kode, nama, alamat, tempat_lahir, tgl_lahir, jenis_kelamin, agama, telp, status_nikah, pekerjaan, tgl_daftar, diagnosa_awal, alergi_obat, jenis_kunjungan) 
+            VALUES ('$kode', '$nama', '$alamat', '$tempat_lahir', '$tgl_lahir', '$jenis_kelamin', '$agama', '$telp', '$status_nikah', '$pekerjaan', '$tgl_daftar', '$diagnosa', '$alergi', '$jenis_kunjungan')");
+
+            return true;
          }
 
          function tampil_user_by_id($id) {
@@ -128,6 +139,13 @@ date_default_timezone_set('Asia/Jakarta');
             return $data;
          }
 
+         function tampil_pasien_by_id($id) {
+            $kode = mysqli_query($this -> koneksi, "SELECT * FROM pasien WHERE id = '$id'");
+            $data = mysqli_fetch_array($kode);
+
+            return $data;
+         }
+
          function hapus_user($id) {
             mysqli_query($this -> koneksi, "DELETE FROM user_right WHERE id = '$id'");
             return true;
@@ -135,6 +153,11 @@ date_default_timezone_set('Asia/Jakarta');
 
          function hapus_dokter($id) {
             mysqli_query($this -> koneksi, "DELETE FROM dokter WHERE id = '$id'");
+            return true;
+         }
+
+         function hapus_pasien($id) {
+            mysqli_query($this -> koneksi, "DELETE FROM pasien WHERE id = '$id'");
             return true;
          }
 
@@ -150,16 +173,38 @@ date_default_timezone_set('Asia/Jakarta');
             return true;
          }
 
-         function edit_dokter($id, $nama, $alamat, $tempat_lahir, $tgl_lahir, $agama, $telp, $status_nikah, $no_izin) {
+         function edit_dokter($id, $nama, $alamat, $tempat_lahir, $tgl_lahir, $jenis_kelamin, $agama, $telp, $status_nikah, $no_izin) {
             mysqli_query($this -> koneksi, "UPDATE dokter SET 
                 nama = '$nama',
                 alamat = '$alamat',
                 tempat_lahir = '$tempat_lahir',
                 tgl_lahir = '$tgl_lahir',
+                jenis_kelamin = '$jenis_kelamin',
                 agama = '$agama',
                 telp = '$telp',
                 status_nikah = '$status_nikah',
                 no_izin = '$no_izin'
+
+                WHERE id='$id'
+            ");
+            return true;
+         }
+
+         function edit_pasien($id, $nama, $alamat, $tempat_lahir, $tgl_lahir, $jenis_kelamin, $agama, $telp, $status_nikah, $pekerjaan, $tgl_daftar, $diagnosa, $alergi, $jenis_kunjungan) {
+            mysqli_query($this -> koneksi, "UPDATE pasien SET 
+                nama = '$nama',
+                alamat = '$alamat',
+                tempat_lahir = '$tempat_lahir',
+                tgl_lahir = '$tgl_lahir',
+                jenis_kelamin = '$jenis_kelamin',
+                agama = '$agama',
+                telp = '$telp',
+                status_nikah = '$status_nikah',
+                pekerjaan = '$pekerjaan',
+                tgl_daftar = '$tgl_daftar',
+                diagnosa_awal = '$diagnosa',
+                alergi_obat = '$alergi',
+                jenis_kunjungan = '$jenis_kunjungan'
 
                 WHERE id='$id'
             ");

@@ -33,7 +33,7 @@
 </center>
 <div class="md:px-16 px-5">
   <div style="padding-bottom: 10px;">
-    <a href="home.php?page=tambah_dokter">
+    <a href="home.php?page=tambah_pasien">
       <button style="border: 0;" class="btn btn-primary font-semibold bg-slate-300 hover:bg-teal-500">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
           <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
@@ -48,22 +48,22 @@
       <table id="myTable" class="table table-compact w-full text-center">
         <thead>
           <tr>
-            <th style="text-align: center;">No</th>
-            <th style="text-align: center;">Kode</th>
-            <th style="text-align: center;">Nama</th>
-            <th style="text-align: center;">Alamat</th>
-            <th style="text-align: center;">Tempat Lahir</th>
-            <th style="text-align: center;">Tanggal Lahir</th>
-            <th style="text-align: center;">Jenis Kelamin</th>
-            <th style="text-align: center;">Agama</th>
-            <th style="text-align: center;">No. Telp</th>
-            <th style="text-align: center;">Status Nikah</th>
-            <th style="text-align: center;">Pekerjaan</th>
-            <th style="text-align: center;">Jenis Kunjungan</th>
-            <th style="text-align: center;">Tgl Daftar</th>
-            <th style="text-align: center;">Diagnosa Awal</th>
-            <th style="text-align: center;">Alergi Obat</th>
-            <th style="text-align: center;">Action</th>
+            <th class="bg-green-200 style="text-align: center;">No</th>
+            <th class="bg-green-200 style="text-align: center;">Kode</th>
+            <th class="bg-green-200 style="text-align: center;">Nama</th>
+            <th class="bg-green-200 style="text-align: center;">Alamat</th>
+            <th class="bg-green-200 style="text-align: center;">Tempat Lahir</th>
+            <th class="bg-green-200 style="text-align: center;">Tanggal Lahir</th>
+            <th class="bg-green-200 style="text-align: center;">Jenis Kelamin</th>
+            <th class="bg-green-200  style="text-align: center;">Agama</th>
+            <th class="bg-green-200 style="text-align: center;">No. Telp</th>
+            <th class="bg-green-200 style="text-align: center;">Status Nikah</th>
+            <th class="bg-green-200 style="text-align: center;">Pekerjaan</th>
+            <th class="bg-green-200 style="text-align: center;">Jenis Kunjungan</th>
+            <th class="bg-green-200 style="text-align: center;">Tgl Daftar</th>
+            <th class="bg-green-200 style="text-align: center;">Diagnosa Awal</th>
+            <th class="bg-green-200 style="text-align: center;">Alergi Obat</th>
+            <th class="bg-green-200 style="text-align: center;">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -107,6 +107,13 @@
             } else if ($sn = 'B') {
                 $nikah = "Belum Menikah";
             }
+
+            $jk = $row['jenis_kunjungan'];
+            if ($jk == 'I') {
+              $kujungan = 'Rawat Inap';
+            } else if ($jk == 'J') {
+              $kujungan = 'Rawat Jalan';
+            }
           ?>
             <tr>
               <input type="text" name="id" value="<?= $row['id'] ?>" hidden>
@@ -121,7 +128,7 @@
               <td><?= $row['telp'] ?></td>
               <td><?= $nikah ?></td>
               <td><?= $row['pekerjaan'] ?></td>
-              <td><?= $row['jenis_kunjungan'] ?></td>
+              <td><?= $kujungan ?></td>
               <td><?= $row['tgl_daftar'] ?></td>
               <td><?= $row['diagnosa_awal'] ?></td>
               <td><?= $row['alergi_obat'] ?></td>

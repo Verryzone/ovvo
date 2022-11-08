@@ -26,7 +26,7 @@
         $kode = "D2" . $id_tgl;
 
 
-        $tambah = $db->tambah_dokter($kode, $nama, $alamat, $tempat_lahir, $tgl_lahir, $agama, $telp, $status_nikah, $no_izin);
+        $tambah = $db->tambah_dokter($kode, $nama, $alamat, $tempat_lahir, $tgl_lahir, $jenis_kelamin, $agama, $telp, $status_nikah, $no_izin);
         if($tambah) {
             header('Location: ../home.php?page=data_dokter&alert=tambah');
         }
@@ -41,7 +41,7 @@
         $status_nikah = $_POST['status_nikah'];
         $no_izin = $_POST['no_izin'];
 
-        $update = $db->edit_dokter($_GET['id'], $nama, $alamat, $tempat_lahir, $tgl_lahir, $agama, $telp, $status_nikah, $no_izin);
+        $update = $db->edit_dokter($_GET['id'], $nama, $alamat, $tempat_lahir, $tgl_lahir, $jenis_kelamin, $agama, $telp, $status_nikah, $no_izin);
 
         if ($update) {
             header('Location: ../home.php?page=data_dokter&alert=edit');
