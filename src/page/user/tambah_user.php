@@ -77,10 +77,11 @@ if (isset($_POST['simpan'])) {
                             <option value="D2">Dokter</option>
                             <option value="P3">Pasien</option>
                             <option value="P0">Poli</option>
+                            <option value="A1">SuperAdmin</option>
                         </select>
                     </div>
 
-                    <div class="form-control W-full">
+                    <div class="form_cari form-control W-full">
                         <div class="input-group w-full">
                             <input id="cari_user" type="text" placeholder="Search…" class="input input-bordered w-full" />
                             <button type="button" class="btn btn-square">
@@ -118,12 +119,14 @@ if (isset($_POST['simpan'])) {
                         <label class="label">
                             <span class="label-text">Type User</span>
                         </label>
-                        <select class="select w-full" name="type" id="types" required>
-                            <option value="A1">SuperAdmin</option>
-                            <option value="D2">Dokter</option>
-                            <option value="P3">Pasien</option>
-                            <option value="P0">Poli</option>
-                        </select>
+                        <input id="tipe_user" type="text" placeholder="" name="type" class="input input-bordered w-full" required hidden/>
+                        <input id="tampil_type" type="text" placeholder="" class="input input-bordered w-full" required disabled/>
+                        <!-- <select class="select w-full" name="type" id="types" required>
+                            <option id="admin" value="A1">SuperAdmin</option>
+                            <option id="dokter" value="D2">Dokter</option>
+                            <option id="pasien" value="P3">Pasien</option>
+                            <option id="poli" value="P0">Poli</option>
+                        </select> -->
                     </div>
                     <div class="form-control w-full my-6 px-40">
                         <button type="submit" name="simpan" style="border: 0;" class="btn btn-primary bg-slate-300 hover:bg-teal-500">
@@ -167,11 +170,24 @@ if (isset($_POST['simpan'])) {
 
             if(sumber_user == 'D2') {
                 sumber = 'dokter';
+                var nama = 'Dokter';
+                $('.form_cari').show();
             } else if (sumber_user == 'P3') {
                 sumber = 'pasien';
+                var nama = 'Pasien';
+                $('.form_cari').show();
             } else if(sumber_user == 'P0') {
                 sumber = 'poli';
+                var nama = 'Poli';
+                $('.form_cari').show();
+            } else if (sumber_user == 'A1') {
+                sumber = 'admin';
+                var nama = 'SuperAdmin';
+                $('.form_cari').hide();
             }
+
+            $('#tipe_user').val(sumber_user)
+            $('#tampil_type').val(nama)
             var cari = $('#cari_user').val();
             load_data(sumber, cari);
         });
@@ -181,13 +197,29 @@ if (isset($_POST['simpan'])) {
 
             if(sumber_user == 'D2') {
                 sumber = 'dokter';
+                var nama = 'Dokter';
+                $('.form_cari').show();
             } else if (sumber_user == 'P3') {
                 sumber = 'pasien';
+                var nama = 'Pasien';
+                $('.form_cari').show();
             } else if(sumber_user == 'P0') {
                 sumber = 'poli';
+                var nama = 'Poli';
+                $('.form_cari').show();
+            } else if (sumber_user == 'A1') {
+                sumber = 'admin';
+                var nama = 'SuperAdmin';
+                $('.form_cari').hide();
             }
+
+            $('#tipe_user').val(sumber_user)
+            $('#tampil_type').val(nama)
             var cari = $('#cari_user').val();
             load_data(sumber, cari); 
+
+            // $('#tipe_user').val(sumber_user)
+
         });
     });
 </script>

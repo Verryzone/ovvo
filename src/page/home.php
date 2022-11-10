@@ -10,7 +10,7 @@ if (!isset($_SESSION['is_login'])) {
 
 if (isset($_GET['q'])) {
     $db->logout();
-    header("Location: ../login.php");
+    header("Location: ../login.php?pesan=logout");
 }
 ?>
 
@@ -45,6 +45,13 @@ if (isset($_GET['q'])) {
             font-family: 'Poppins';
             src: url(../component/font/Poppins-Regular.ttf);
         }
+        
+        @font-face {
+            font-family: 'bold-Poppins';
+            src: url(../component/font/Poppins-Bold.ttf);
+        }
+
+        
     </style>
 </head>
 
@@ -104,7 +111,15 @@ if (isset($_GET['q'])) {
                     include 'pasien/tambah_pasien.php';
                 } else if ($_GET['page'] == 'edit_pasien') {
                     include 'pasien/edit_pasien.php';
+                } else if ($_GET['page'] == 'data_staff') {
+                    include 'staff/data_staff.php';
+                }else if ($_GET['page'] == 'tambah_staff') {
+                    include 'staff/tambah_staff.php';
+                }else if ($_GET['page'] == 'edit_staff') {
+                    include 'staff/edit_staff.php';
                 }
+            } else {
+                include 'home/dashboard.php';
             }
             ?>
         </div>
@@ -116,7 +131,7 @@ if (isset($_GET['q'])) {
                 <!-- Sidebar content here -->
                 <center>
                     <div class="object-center">
-                        <img class="pl-40 object-center" style="width: 150px;" src="../img/logo1.png" alt="ovvo-klinik">
+                        <img class="object-center" style="width: 150px;" src="../img/logo1.png" alt="ovvo-klinik">
                     </div><br>
                     <hr>
                 </center>
@@ -141,7 +156,7 @@ if (isset($_GET['q'])) {
                         $data_pasien = '';
                     }
 
-                    if ($_GET['page'] == 'data_poli' || $_GET['page'] ==  'tambah_poli' || $_GET['page'] == 'edit_poli') {
+                    if ($_GET['page'] == 'data_staff' || $_GET['page'] ==  'tambah_staff' || $_GET['page'] == 'edit_staff') {
                         $data_poli = "--tw-bg-opacity: 1; background-color: rgb(74 222 128 / var(--tw-bg-opacity));";
                     } else {
                         $data_poli = '';
@@ -151,10 +166,13 @@ if (isset($_GET['q'])) {
                     } else {
                         $data_obat = '';
                     }
+                } else {
+                    $home = "--tw-bg-opacity: 1; background-color: rgb(74 222 128 / var(--tw-bg-opacity));";
+
                 }
                 ?>
-                <li class=" hover:bg-slate-900/10 rounded-md selection:bg-slate-100 text-white">
-                    <a>
+                <li style="<?= $home; ?>" class=" hover:bg-slate-900/10 rounded-md selection:bg-slate-100 text-white">
+                    <a href="home.php">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
                             <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z" />
                         </svg>
@@ -191,12 +209,12 @@ if (isset($_GET['q'])) {
                 </li>
 
                 <li style="<?= $data_poli; ?>" class="  hover:bg-slate-900/10 rounded-md selection:bg-slate-100 text-white">
-                    <a href="home.php?page=data_poli">
+                    <a href="home.php?page=data_staff">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-person" viewBox="0 0 16 16">
                             <path d="M12 1a1 1 0 0 1 1 1v10.755S12 11 8 11s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z" />
                             <path d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                         </svg>
-                        Poli
+                        Staff
                     </a>
                 </li>
                 <li style="<?= $data_obat; ?>" class="  hover:bg-slate-900/10 rounded-md selection:bg-slate-100 text-white">

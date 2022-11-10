@@ -48,22 +48,22 @@
       <table id="myTable" class="table table-compact w-full text-center">
         <thead>
           <tr>
-            <th class="bg-green-200 style="text-align: center;">No</th>
-            <th class="bg-green-200 style="text-align: center;">Kode</th>
-            <th class="bg-green-200 style="text-align: center;">Nama</th>
-            <th class="bg-green-200 style="text-align: center;">Alamat</th>
-            <th class="bg-green-200 style="text-align: center;">Tempat Lahir</th>
-            <th class="bg-green-200 style="text-align: center;">Tanggal Lahir</th>
-            <th class="bg-green-200 style="text-align: center;">Jenis Kelamin</th>
-            <th class="bg-green-200  style="text-align: center;">Agama</th>
-            <th class="bg-green-200 style="text-align: center;">No. Telp</th>
-            <th class="bg-green-200 style="text-align: center;">Status Nikah</th>
-            <th class="bg-green-200 style="text-align: center;">Pekerjaan</th>
-            <th class="bg-green-200 style="text-align: center;">Jenis Kunjungan</th>
-            <th class="bg-green-200 style="text-align: center;">Tgl Daftar</th>
-            <th class="bg-green-200 style="text-align: center;">Diagnosa Awal</th>
-            <th class="bg-green-200 style="text-align: center;">Alergi Obat</th>
-            <th class="bg-green-200 style="text-align: center;">Action</th>
+            <th class="bg-green-200" style="text-align: center;">No</th>
+            <th class="bg-green-200" style="text-align: center;">Kode</th>
+            <th class="bg-green-200" style="text-align: center;">Nama</th>
+            <th class="bg-green-200" style="text-align: center;">Alamat</th>
+            <th class="bg-green-200" style="text-align: center;">Tempat Lahir</th>
+            <th class="bg-green-200" style="text-align: center;">Tanggal Lahir</th>
+            <th class="bg-green-200" style="text-align: center;">Jenis Kelamin</th>
+            <th class="bg-green-200" style="text-align: center;">Agama</th>
+            <th class="bg-green-200" style="text-align: center;">No. Telp</th>
+            <th class="bg-green-200" style="text-align: center;">Status Nikah</th>
+            <th class="bg-green-200" style="text-align: center;">Pekerjaan</th>
+            <th class="bg-green-200" style="text-align: center;">Jenis Kunjungan</th>
+            <th class="bg-green-200" style="text-align: center;">Tgl Daftar</th>
+            <th class="bg-green-200" style="text-align: center;">Diagnosa Awal</th>
+            <th class="bg-green-200" style="text-align: center;">Alergi Obat</th>
+            <th class="bg-green-200" style="text-align: center;">Action</th>
           </tr>
         </thead>
         <tbody>

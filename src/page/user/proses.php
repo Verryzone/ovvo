@@ -5,7 +5,10 @@
 
     $aksi = $_GET['aksi'];
     if ($aksi == 'tambah') {
-        $nama = $_POST['nama'];
+        $sumber_user = $_POST['sumber_user'];
+        $data = explode("|", $sumber_user);
+        $kode = $data[0];
+        $nama = $data[1];
         $username = $_POST['username'];
         $pw = $_POST['password'];
         $password = md5($pw);
@@ -14,7 +17,7 @@
         $today = date('Y-m-d H:i:s');
         $id_tgl = strtotime($today);
 
-        $kode = $type . $id_tgl;
+        // $kode = $type . $id_tgl;
 
 
         $db->tambah_user($kode, $nama, $username, $password, $type);
@@ -25,6 +28,14 @@
         $username = $_POST['username'];
         $pw = $_POST['password'];
         $type = $_POST['type'];
+
+        if ($type == 'D2') {
+            mysqli_query($db -> koneksi, "UPDATE dokter SET nama = '$name'");
+        } else if ($type == 'P3') {
+            mysqli_query($db -> koneksi, "UPDATE pasien SET nama = '$name'");
+        }else if($type == 'P0') {
+            mysqli_query($db -> koneksi, "UPDATE staff SET nama = '$name'");
+        }
 
         if ($data['password'] == $_POST['password']) {
             $password = $_POST['password'];

@@ -88,6 +88,14 @@ date_default_timezone_set('Asia/Jakarta');
             return $data;
          }
 
+         function tampil_staff() {
+            $query = mysqli_query($this -> koneksi, "SELECT * FROM staff");
+            while ($row = mysqli_fetch_array($query)){
+                $data[] = $row;
+            }
+            return $data;
+         }
+
          function tampil_dokter_by_name($name) {
             $query = mysqli_query($this -> koneksi, "SELECT * FROM dokter WHERE nama LIKE '%" . $name . "%'");
             return $query;
@@ -113,6 +121,14 @@ date_default_timezone_set('Asia/Jakarta');
             // $today = date("Y-m-d H:i:s");
             mysqli_query($this -> koneksi, "INSERT INTO dokter (kode, nama, alamat, tempat_lahir, tgl_lahir, jenis_kelamin, agama, telp, status_nikah, no_izin) 
             VALUES ('$kode', '$nama', '$alamat', '$tempat_lahir', '$tgl_lahir', '$jenis_kelamin', '$agama', '$telp', '$status_nikah', '$no_izin')");
+
+            return true;
+         }
+
+         function tambah_staff($kode, $nama, $alamat, $tempat_lahir, $tgl_lahir, $jenis_kelamin, $agama, $telp, $status_nikah, $ket) {
+            // $today = date("Y-m-d H:i:s");
+            mysqli_query($this -> koneksi, "INSERT INTO staff (kode, nama, alamat, tempat_lahir, tgl_lahir, jenis_kelamin, agama, telp, status_nikah, ket) 
+            VALUES ('$kode', '$nama', '$alamat', '$tempat_lahir', '$tgl_lahir', '$jenis_kelamin', '$agama', '$telp', '$status_nikah', '$ket')");
 
             return true;
          }
@@ -146,6 +162,13 @@ date_default_timezone_set('Asia/Jakarta');
             return $data;
          }
 
+         function tampil_staff_by_id($id) {
+            $kode = mysqli_query($this -> koneksi, "SELECT * FROM staff WHERE id = '$id'");
+            $data = mysqli_fetch_array($kode);
+
+            return $data;
+         }
+
          function hapus_user($id) {
             mysqli_query($this -> koneksi, "DELETE FROM user_right WHERE id = '$id'");
             return true;
@@ -158,6 +181,11 @@ date_default_timezone_set('Asia/Jakarta');
 
          function hapus_pasien($id) {
             mysqli_query($this -> koneksi, "DELETE FROM pasien WHERE id = '$id'");
+            return true;
+         }
+
+         function hapus_staff($id) {
+            mysqli_query($this -> koneksi, "DELETE FROM staff WHERE id = '$id'");
             return true;
          }
 
@@ -184,6 +212,23 @@ date_default_timezone_set('Asia/Jakarta');
                 telp = '$telp',
                 status_nikah = '$status_nikah',
                 no_izin = '$no_izin'
+
+                WHERE id='$id'
+            ");
+            return true;
+         }
+
+         function edit_staff($id, $nama, $alamat, $tempat_lahir, $tgl_lahir, $jenis_kelamin, $agama, $telp, $status_nikah, $ket) {
+            mysqli_query($this -> koneksi, "UPDATE staff SET 
+                nama = '$nama',
+                alamat = '$alamat',
+                tempat_lahir = '$tempat_lahir',
+                tgl_lahir = '$tgl_lahir',
+                jenis_kelamin = '$jenis_kelamin',
+                agama = '$agama',
+                telp = '$telp',
+                status_nikah = '$status_nikah',
+                ket = '$ket'
 
                 WHERE id='$id'
             ");

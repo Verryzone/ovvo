@@ -48,14 +48,14 @@
       <table id="myTable" class="table hover table-compact w-full text-center">
         <thead>
           <tr >
-            <th class="bg-green-200 style="text-align: center;">No</th>
-            <th class="bg-green-200 style="text-align: center;">Code</th>
-            <th class="bg-green-200 style="text-align: center;">Name</th>
-            <th class="bg-green-200 style="text-align: center;">Username</th>
-            <th class="bg-green-200 style="text-align: center;">Type</th>
-            <th class="bg-green-200 style="text-align: center;">Register</th>
-            <th class="bg-green-200 style="text-align: center;">Last Login</th>
-            <th class="bg-green-200 style="text-align: center;">Action</th>
+            <th class="bg-green-200" style="text-align: center;">No</th>
+            <th class="bg-green-200" style="text-align: center;">Code</th>
+            <th class="bg-green-200" style="text-align: center;">Name</th>
+            <th class="bg-green-200" style="text-align: center;">Username</th>
+            <th class="bg-green-200" style="text-align: center;">Type</th>
+            <th class="bg-green-200" style="text-align: center;">Register</th>
+            <th class="bg-green-200" style="text-align: center;">Last Login</th>
+            <th class="bg-green-200" style="text-align: center;">Action</th>
           </tr>
         </thead>
         <tbody>
