@@ -60,7 +60,7 @@
                 </div>
             </div>
         </a>
-        <a href="home.php?page=data_poli">
+        <a href="home.php?page=data_staff">
             <div class="card w-44 md:w-60 md:h-70 bg-base-100 shadow-xl animasiku">
                 <figure><img src="./home/img/poli.jpg" alt="Shoes" /></figure>
                 <div class="card-body">

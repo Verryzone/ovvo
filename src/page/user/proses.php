@@ -28,13 +28,14 @@
         $username = $_POST['username'];
         $pw = $_POST['password'];
         $type = $_POST['type'];
+        $kode = $_POST['kode'];
 
         if ($type == 'D2') {
-            mysqli_query($db -> koneksi, "UPDATE dokter SET nama = '$name'");
+            mysqli_query($db -> koneksi, "UPDATE dokter SET nama = '$name' WHERE kode = '$kode'");
         } else if ($type == 'P3') {
-            mysqli_query($db -> koneksi, "UPDATE pasien SET nama = '$name'");
+            mysqli_query($db -> koneksi, "UPDATE pasien SET nama = '$name' WHERE kode = '$kode'");
         }else if($type == 'P0') {
-            mysqli_query($db -> koneksi, "UPDATE staff SET nama = '$name'");
+            mysqli_query($db -> koneksi, "UPDATE staff SET nama = '$name' WHERE kode = '$kode'");
         }
 
         if ($data['password'] == $_POST['password']) {

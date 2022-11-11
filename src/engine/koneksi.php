@@ -87,9 +87,25 @@ date_default_timezone_set('Asia/Jakarta');
             }
             return $data;
          }
+         
+         function tampil_obat() {
+            $query = mysqli_query($this -> koneksi, "SELECT * FROM obat");
+            while ($row = mysqli_fetch_array($query)){
+                $data[] = $row;
+            }
+            return $data;
+         }
 
          function tampil_staff() {
             $query = mysqli_query($this -> koneksi, "SELECT * FROM staff");
+            while ($row = mysqli_fetch_array($query)){
+                $data[] = $row;
+            }
+            return $data;
+         }
+
+         function tampil_transaksi() {
+            $query = mysqli_query($this -> koneksi, "SELECT * FROM transaksi");
             while ($row = mysqli_fetch_array($query)){
                 $data[] = $row;
             }
@@ -141,6 +157,14 @@ date_default_timezone_set('Asia/Jakarta');
             return true;
          }
 
+         function tambah_obat($kode, $nama, $stok, $tgl_exp) {
+            // $today = date("Y-m-d H:i:s");
+            mysqli_query($this -> koneksi, "INSERT INTO obat (kode, nama, stok, tgl_exp) 
+            VALUES ('$kode', '$nama', '$stok', '$tgl_exp')");
+
+            return true;
+         }
+
          function tampil_user_by_id($id) {
             $kode = mysqli_query($this -> koneksi, "SELECT * FROM user_right WHERE id = '$id'");
             $data = mysqli_fetch_array($kode);
@@ -169,6 +193,13 @@ date_default_timezone_set('Asia/Jakarta');
             return $data;
          }
 
+         function tampil_obat_by_id($id) {
+            $kode = mysqli_query($this -> koneksi, "SELECT * FROM obat WHERE id = '$id'");
+            $data = mysqli_fetch_array($kode);
+
+            return $data;
+         }
+
          function hapus_user($id) {
             mysqli_query($this -> koneksi, "DELETE FROM user_right WHERE id = '$id'");
             return true;
@@ -186,6 +217,11 @@ date_default_timezone_set('Asia/Jakarta');
 
          function hapus_staff($id) {
             mysqli_query($this -> koneksi, "DELETE FROM staff WHERE id = '$id'");
+            return true;
+         }
+         
+         function hapus_obat($id) {
+            mysqli_query($this -> koneksi, "DELETE FROM obat WHERE id = '$id'");
             return true;
          }
 
@@ -250,6 +286,17 @@ date_default_timezone_set('Asia/Jakarta');
                 diagnosa_awal = '$diagnosa',
                 alergi_obat = '$alergi',
                 jenis_kunjungan = '$jenis_kunjungan'
+
+                WHERE id='$id'
+            ");
+            return true;
+         }
+         
+         function edit_obat($id, $nama, $stok, $tgl_exp) {
+            mysqli_query($this -> koneksi, "UPDATE obat SET 
+                nama = '$nama',
+                stok = '$stok',
+                tgl_exp = '$tgl_exp'
 
                 WHERE id='$id'
             ");

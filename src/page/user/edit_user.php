@@ -77,6 +77,7 @@ $data = $db -> tampil_user_by_id($_GET['id']);
                             <span class="label-text">Nama</span>
                         </label>
                         <input value="<?= $data['nama']?>" type="text" placeholder="" name="nama" class="input input-bordered w-full" />
+                        <input type="hidden" name="kode" id="kode" value="<?= $data['kode']; ?>">
                     </div>
                     <div class=" form-control w-full ">
                         <label class="label">

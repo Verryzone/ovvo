@@ -26,15 +26,13 @@ if (isset($_GET['q'])) {
     <!-- tailwind css -->
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
 
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
-
-    <!-- Datatables -->
     <!-- jQquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
 
     <!-- Css -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
     <!-- JS -->
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
     <!-- Datatables -->
@@ -45,13 +43,11 @@ if (isset($_GET['q'])) {
             font-family: 'Poppins';
             src: url(../component/font/Poppins-Regular.ttf);
         }
-        
+
         @font-face {
             font-family: 'bold-Poppins';
             src: url(../component/font/Poppins-Bold.ttf);
         }
-
-        
     </style>
 </head>
 
@@ -113,10 +109,22 @@ if (isset($_GET['q'])) {
                     include 'pasien/edit_pasien.php';
                 } else if ($_GET['page'] == 'data_staff') {
                     include 'staff/data_staff.php';
-                }else if ($_GET['page'] == 'tambah_staff') {
+                } else if ($_GET['page'] == 'tambah_staff') {
                     include 'staff/tambah_staff.php';
-                }else if ($_GET['page'] == 'edit_staff') {
+                } else if ($_GET['page'] == 'edit_staff') {
                     include 'staff/edit_staff.php';
+                } else if ($_GET['page'] == 'data_obat') {
+                    include 'obat/data_obat.php';
+                } else if ($_GET['page'] == 'tambah_obat') {
+                    include 'obat/tambah_obat.php';
+                } else if ($_GET['page'] == 'edit_obat') {
+                    include 'obat/edit_obat.php';
+                } else if ($_GET['page'] == 'data_transaksi') {
+                    include 'transaksi/data_transaksi.php';
+                } else if ($_GET['page'] == 'tambah_transaksi') {
+                    include 'transaksi/tambah_transaksi.php';
+                } else if ($_GET['page'] == 'edit_transaksi') {
+                    include 'transaksi/edit_transaksi.php';
                 }
             } else {
                 include 'home/dashboard.php';
@@ -166,9 +174,14 @@ if (isset($_GET['q'])) {
                     } else {
                         $data_obat = '';
                     }
+
+                    if ($_GET['page'] == 'data_transaksi' || $_GET['page'] ==  'tambah_transaksi' || $_GET['page'] == 'edit_transaksi') {
+                        $data_transaksi = "--tw-bg-opacity: 1; background-color: rgb(74 222 128 / var(--tw-bg-opacity));";
+                    } else {
+                        $data_transaksi = '';
+                    }
                 } else {
                     $home = "--tw-bg-opacity: 1; background-color: rgb(74 222 128 / var(--tw-bg-opacity));";
-
                 }
                 ?>
                 <li style="<?= $home; ?>" class=" hover:bg-slate-900/10 rounded-md selection:bg-slate-100 text-white">
@@ -223,6 +236,14 @@ if (isset($_GET['q'])) {
                             <path fill-rule="evenodd" d="M1.828 8.9 8.9 1.827a4 4 0 1 1 5.657 5.657l-7.07 7.071A4 4 0 1 1 1.827 8.9Zm9.128.771 2.893-2.893a3 3 0 1 0-4.243-4.242L6.713 5.429l4.243 4.242Z" />
                         </svg>
                         Obat
+                    </a>
+                </li>
+                <li style="<?= $data_transaksi; ?>" class="  hover:bg-slate-900/10 rounded-md selection:bg-slate-100 text-white">
+                    <a href="home.php?page=data_transaksi">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wallet" viewBox="0 0 16 16">
+                            <path d="M0 3a2 2 0 0 1 2-2h13.5a.5.5 0 0 1 0 1H15v2a1 1 0 0 1 1 1v8.5a1.5 1.5 0 0 1-1.5 1.5h-12A2.5 2.5 0 0 1 0 12.5V3zm1 1.732V12.5A1.5 1.5 0 0 0 2.5 14h12a.5.5 0 0 0 .5-.5V5H2a1.99 1.99 0 0 1-1-.268zM1 3a1 1 0 0 0 1 1h12V2H2a1 1 0 0 0-1 1z" />
+                        </svg>
+                        Transaksi
                     </a>
                 </li>
             </ul>
