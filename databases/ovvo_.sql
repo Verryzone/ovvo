@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Nov 2022 pada 08.35
+-- Waktu pembuatan: 10 Nov 2022 pada 07.52
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 8.1.6
 
@@ -46,31 +46,8 @@ CREATE TABLE `dokter` (
 --
 
 INSERT INTO `dokter` (`id`, `kode`, `nama`, `tempat_lahir`, `tgl_lahir`, `jenis_kelamin`, `telp`, `alamat`, `agama`, `status_nikah`, `no_izin`) VALUES
-(4, 'D21667199748', 'Hora Miroyo', 'majapahit', '2022-10-31', 'P', '789', 'mojomahit tapi legi', '1', 'B', 'asdasd'),
+(4, 'D21667199748', 'Juna ksatria naga__', 'majapahit', '2022-10-31', 'P', '789', 'mojomahit tapi legi', '1', 'B', 'asdasd'),
 (5, 'D21667533803', 'Juna ksatria naga__', 'asdsad', '2022-11-15', 'L', 'asd', 'asd', '4', 'S', 'sstttt');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `obat`
---
-
-CREATE TABLE `obat` (
-  `id` int(7) NOT NULL,
-  `kode` varchar(20) NOT NULL,
-  `nama` varchar(30) NOT NULL,
-  `stok` int(10) NOT NULL,
-  `tgl_exp` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `obat`
---
-
-INSERT INTO `obat` (`id`, `kode`, `nama`, `stok`, `tgl_exp`) VALUES
-(1, 'O-001', 'Paracetamol', 12, '12312323'),
-(2, 'OB1668136898', 'Paracetamol', 2000, '2026-07-15'),
-(3, 'OB1668137332', 'Panadol EXtra Panas', 50, '2040-06-05');
 
 -- --------------------------------------------------------
 
@@ -136,35 +113,6 @@ INSERT INTO `staff` (`id`, `kode`, `nama`, `tempat_lahir`, `tgl_lahir`, `jenis_k
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `transaksi`
---
-
-CREATE TABLE `transaksi` (
-  `id` int(7) NOT NULL,
-  `kode` varchar(20) NOT NULL,
-  `tgl_transaksi` varchar(20) NOT NULL,
-  `pasien` varchar(30) NOT NULL,
-  `penyakit` varchar(30) NOT NULL,
-  `dokter` varchar(30) NOT NULL,
-  `total_harga` decimal(12,0) NOT NULL,
-  `dibayar` decimal(12,0) NOT NULL,
-  `kembali` decimal(12,0) NOT NULL,
-  `tgl_bayar` varchar(20) NOT NULL,
-  `cara_bayar` int(1) NOT NULL,
-  `status` int(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `transaksi`
---
-
-INSERT INTO `transaksi` (`id`, `kode`, `tgl_transaksi`, `pasien`, `penyakit`, `dokter`, `total_harga`, `dibayar`, `kembali`, `tgl_bayar`, `cara_bayar`, `status`) VALUES
-(1, 'TR00001', '121212', 'Endro', 'sehat', 'Juna', '10000', '12000', '2000', '121212', 1, 1),
-(2, 'TR00001', '121212', 'Endro', 'sehat', 'Juna', '10000', '12000', '2000', '121212', 1, 1);
-
--- --------------------------------------------------------
-
---
 -- Struktur dari tabel `user_right`
 --
 
@@ -184,14 +132,14 @@ CREATE TABLE `user_right` (
 --
 
 INSERT INTO `user_right` (`id`, `kode`, `nama`, `username`, `password`, `type`, `register`, `last_login`) VALUES
-(27, 'A11666671000', 'Administrator', 'Administrator', '202cb962ac59075b964b07152d234b70', 'A1', '2022-10-25 11:10:00', '2022-11-11 10:04:02'),
+(27, 'A11666671000', 'Administrator', 'Administrator', '202cb962ac59075b964b07152d234b70', 'A1', '2022-10-25 11:10:00', '2022-11-10 08:56:23'),
 (28, 'D21666830088', 'Endro Setiawan', 'Endro', '202cb962ac59075b964b07152d234b70', 'D2', '2022-10-27 07:21:28', '2022-11-07 09:17:25'),
 (31, 'P01666842550', 'Plakat Champion', 'Plakat Champion', '202cb962ac59075b964b07152d234b70', 'P0', '2022-10-27 10:49:10', '2022-11-07 09:17:25'),
 (32, 'P31666842929', 'Abdullah', 'Dullah', '202cb962ac59075b964b07152d234b70', 'P3', '2022-10-27 10:55:29', '2022-11-07 09:17:25'),
 (34, 'D21666928250', 'Plakat Champion', 'asd', '49f0bad299687c62334182178bfd75d8', 'D2', '2022-10-28 10:37:30', '2022-11-07 09:17:25'),
 (37, 'A11667198755', 'Endro Setiawan', 'Dullah', 'b4b147bc522828731f1a016bfa72c073', 'A1', '2022-10-31 13:45:55', '2022-11-07 09:17:25'),
 (40, 'D21668048983', 'D21667199748', 'juna', '5f039b4ef0058a1d652f13d612375a5b', 'D2', '2022-11-10 09:56:23', NULL),
-(41, 'D21667199748', 'Hora Miroyo', 'asdasd', 'f1cf78e0ba9acd143c5a70df995544e5', 'D2', '2022-11-10 10:01:35', NULL);
+(41, 'D21667199748', 'Juna ksatria naga__', 'asdasd', 'f1cf78e0ba9acd143c5a70df995544e5', 'D2', '2022-11-10 10:01:35', NULL);
 
 --
 -- Indexes for dumped tables
@@ -204,12 +152,6 @@ ALTER TABLE `dokter`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `obat`
---
-ALTER TABLE `obat`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indeks untuk tabel `pasien`
 --
 ALTER TABLE `pasien`
@@ -219,12 +161,6 @@ ALTER TABLE `pasien`
 -- Indeks untuk tabel `staff`
 --
 ALTER TABLE `staff`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indeks untuk tabel `transaksi`
---
-ALTER TABLE `transaksi`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -244,12 +180,6 @@ ALTER TABLE `dokter`
   MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `obat`
---
-ALTER TABLE `obat`
-  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
 -- AUTO_INCREMENT untuk tabel `pasien`
 --
 ALTER TABLE `pasien`
@@ -260,12 +190,6 @@ ALTER TABLE `pasien`
 --
 ALTER TABLE `staff`
   MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT untuk tabel `transaksi`
---
-ALTER TABLE `transaksi`
-  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_right`
