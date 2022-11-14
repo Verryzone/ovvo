@@ -1,5 +1,28 @@
 <?php
-
+    session_start();
+    include "engine/koneksi.php";
+    
+    $db = new database();
+    
+    if (isset($_SESSION['is_login'])) {
+        header("Location: page/home.php");
+    }
+    
+    if (isset($_REQUEST['login'])) {
+        extract($_REQUEST);
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+    
+        // echo $username;
+        // echo $password;
+        $login = $db->login($_POST['username'], $_POST['password']);
+    
+        if ($login) {
+            header("location: page/home.php");
+        } else {
+            header("location: login.php?pesan=gagal");
+        }
+    }
 
 
 
@@ -67,7 +90,7 @@
             </div>
             <div class="justify-center">
                 <h1 class="text-center text-4xl font-bold">Sign in</h1><br>
-                <form action="cek_login.php" id="form_login" method="post">
+                <form action="" id="form_login" method="post">
                     <div style="padding-bottom: 13px;">
                         <input placeholder="username" style="height: 38px ; padding-bottom: 5px;" class="input input-bordered form-control" type="text" name="username">
                     </div>

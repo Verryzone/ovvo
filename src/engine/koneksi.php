@@ -96,6 +96,14 @@ date_default_timezone_set('Asia/Jakarta');
             return $data;
          }
 
+         function tampil_penyakit() {
+            $query = mysqli_query($this -> koneksi, "SELECT * FROM penyakit");
+            while ($row = mysqli_fetch_array($query)){
+                $data[] = $row;
+            }
+            return $data;
+         }
+
          function tampil_staff() {
             $query = mysqli_query($this -> koneksi, "SELECT * FROM staff");
             while ($row = mysqli_fetch_array($query)){
@@ -165,6 +173,14 @@ date_default_timezone_set('Asia/Jakarta');
             return true;
          }
 
+         function tambah_penyakit($kode, $nama, $biaya) {
+            // $today = date("Y-m-d H:i:s");
+            mysqli_query($this -> koneksi, "INSERT INTO penyakit (kode, nama, biaya) 
+            VALUES ('$kode', '$nama', '$biaya')");
+
+            return true;
+         }
+
          function tampil_user_by_id($id) {
             $kode = mysqli_query($this -> koneksi, "SELECT * FROM user_right WHERE id = '$id'");
             $data = mysqli_fetch_array($kode);
@@ -200,6 +216,13 @@ date_default_timezone_set('Asia/Jakarta');
             return $data;
          }
 
+         function tampil_penyakit_by_id($id) {
+            $kode = mysqli_query($this -> koneksi, "SELECT * FROM penyakit WHERE id = '$id'");
+            $data = mysqli_fetch_array($kode);
+
+            return $data;
+         }
+
          function hapus_user($id) {
             mysqli_query($this -> koneksi, "DELETE FROM user_right WHERE id = '$id'");
             return true;
@@ -222,6 +245,11 @@ date_default_timezone_set('Asia/Jakarta');
          
          function hapus_obat($id) {
             mysqli_query($this -> koneksi, "DELETE FROM obat WHERE id = '$id'");
+            return true;
+         }
+
+         function hapus_penyakit($id) {
+            mysqli_query($this -> koneksi, "DELETE FROM penyakit WHERE id = '$id'");
             return true;
          }
 
@@ -297,6 +325,16 @@ date_default_timezone_set('Asia/Jakarta');
                 nama = '$nama',
                 stok = '$stok',
                 tgl_exp = '$tgl_exp'
+
+                WHERE id='$id'
+            ");
+            return true;
+         }
+
+         function edit_penyakit($id, $nama, $biaya) {
+            mysqli_query($this -> koneksi, "UPDATE penyakit SET 
+                nama = '$nama',
+                biaya = '$biaya'
 
                 WHERE id='$id'
             ");

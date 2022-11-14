@@ -119,6 +119,12 @@ if (isset($_GET['q'])) {
                     include 'obat/tambah_obat.php';
                 } else if ($_GET['page'] == 'edit_obat') {
                     include 'obat/edit_obat.php';
+                } else if ($_GET['page'] == 'data_penyakit') {
+                    include 'penyakit/data_penyakit.php';
+                } else if ($_GET['page'] == 'tambah_penyakit') {
+                    include 'penyakit/tambah_penyakit.php';
+                } else if ($_GET['page'] == 'edit_penyakit') {
+                    include 'penyakit/edit_penyakit.php';
                 } else if ($_GET['page'] == 'data_transaksi') {
                     include 'transaksi/data_transaksi.php';
                 } else if ($_GET['page'] == 'tambah_transaksi') {
@@ -173,6 +179,12 @@ if (isset($_GET['q'])) {
                         $data_obat = "--tw-bg-opacity: 1; background-color: rgb(74 222 128 / var(--tw-bg-opacity));";
                     } else {
                         $data_obat = '';
+                    }
+
+                    if ($_GET['page'] == 'data_penyakit' || $_GET['page'] ==  'tambah_penyakit' || $_GET['page'] == 'edit_penyakit') {
+                        $data_penyakit = "--tw-bg-opacity: 1; background-color: rgb(74 222 128 / var(--tw-bg-opacity));";
+                    } else {
+                        $data_penyakit = '';
                     }
 
                     if ($_GET['page'] == 'data_transaksi' || $_GET['page'] ==  'tambah_transaksi' || $_GET['page'] == 'edit_transaksi') {
@@ -236,6 +248,14 @@ if (isset($_GET['q'])) {
                             <path fill-rule="evenodd" d="M1.828 8.9 8.9 1.827a4 4 0 1 1 5.657 5.657l-7.07 7.071A4 4 0 1 1 1.827 8.9Zm9.128.771 2.893-2.893a3 3 0 1 0-4.243-4.242L6.713 5.429l4.243 4.242Z" />
                         </svg>
                         Obat
+                    </a>
+                </li>
+                <li style="<?= $data_penyakit; ?>" class="  hover:bg-slate-900/10 rounded-md selection:bg-slate-100 text-white">
+                    <a href="home.php?page=data_penyakit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heartbreak-fill" viewBox="0 0 16 16">
+                            <path d="M8.931.586 7 3l1.5 4-2 3L8 15C22.534 5.396 13.757-2.21 8.931.586ZM7.358.77 5.5 3 7 7l-1.5 3 1.815 4.537C-6.533 4.96 2.685-2.467 7.358.77Z" />
+                        </svg>
+                        Penyakit
                     </a>
                 </li>
                 <li style="<?= $data_transaksi; ?>" class="  hover:bg-slate-900/10 rounded-md selection:bg-slate-100 text-white">
