@@ -113,7 +113,22 @@ date_default_timezone_set('Asia/Jakarta');
          }
 
          function tampil_transaksi() {
-            $query = mysqli_query($this -> koneksi, "SELECT * FROM transaksi");
+            $query = mysqli_query($this -> koneksi, "SELECT transaksi.*, 
+            pasien.kode AS kode_pasien, 
+            pasien.nama AS nama_pasien, 
+            dokter.kode AS kode_dokter, 
+            dokter.nama AS nama_dokter, 
+            sakit.kode AS kode_sakit, 
+            sakit.nama AS nama_sakit, 
+            sakit.biaya, 
+            obat.nama AS nama_obat, 
+            obat.kode AS kode_obat 
+            FROM transaksi AS transaksi 
+               LEFT JOIN pasien AS pasien ON (pasien.kode = transaksi.pasien)
+               LEFT JOIN dokter AS dokter ON (dokter.kode = transaksi.dokter)
+               LEFT JOIN penyakit AS sakit ON (sakit.kode = transaksi.penyakit)
+               LEFT JOIN obat AS obat ON (obat.kode = transaksi.obat)
+            ");
             while ($row = mysqli_fetch_array($query)){
                 $data[] = $row;
             }
@@ -158,17 +173,16 @@ date_default_timezone_set('Asia/Jakarta');
          }
 
          function tambah_pasien($kode, $nama, $alamat, $tempat_lahir, $tgl_lahir, $jenis_kelamin, $agama, $telp, $status_nikah, $pekerjaan, $tgl_daftar, $diagnosa, $alergi, $jenis_kunjungan) {
-            // $today = date("Y-m-d H:i:s");
             mysqli_query($this -> koneksi, "INSERT INTO pasien (kode, nama, alamat, tempat_lahir, tgl_lahir, jenis_kelamin, agama, telp, status_nikah, pekerjaan, tgl_daftar, diagnosa_awal, alergi_obat, jenis_kunjungan) 
             VALUES ('$kode', '$nama', '$alamat', '$tempat_lahir', '$tgl_lahir', '$jenis_kelamin', '$agama', '$telp', '$status_nikah', '$pekerjaan', '$tgl_daftar', '$diagnosa', '$alergi', '$jenis_kunjungan')");
 
             return true;
          }
 
-         function tambah_obat($kode, $nama, $stok, $tgl_exp) {
+         function tambah_obat($kode, $nama, $stok, $tgl_exp, $harga) {
             // $today = date("Y-m-d H:i:s");
-            mysqli_query($this -> koneksi, "INSERT INTO obat (kode, nama, stok, tgl_exp) 
-            VALUES ('$kode', '$nama', '$stok', '$tgl_exp')");
+            mysqli_query($this -> koneksi, "INSERT INTO obat (kode, nama, stok, tgl_exp, harga) 
+            VALUES ('$kode', '$nama', '$stok', '$tgl_exp', '$harga')");
 
             return true;
          }
@@ -177,6 +191,14 @@ date_default_timezone_set('Asia/Jakarta');
             // $today = date("Y-m-d H:i:s");
             mysqli_query($this -> koneksi, "INSERT INTO penyakit (kode, nama, biaya) 
             VALUES ('$kode', '$nama', '$biaya')");
+
+            return true;
+         }
+
+         function tambah_transaksi($kode, $tgl_transaksi, $nama_pasien, $penyakit, $obat, $dokter, $total_harga, $dibayar, $kembalian, $tgl_bayar, $cara_bayar, $status) {
+            // $today = date("Y-m-d H:i:s");
+            mysqli_query($this -> koneksi, "INSERT INTO transaksi (kode, tgl_transaksi, pasien, penyakit, obat, dokter, total_harga, dibayar, kembali, tgl_bayar, cara_bayar, status) 
+            VALUES ('$kode', '$tgl_transaksi', '$nama_pasien', '$penyakit', '$obat', '$dokter', '$total_harga', '$dibayar', '$kembalian', '$tgl_bayar', '$cara_bayar', '$status')");
 
             return true;
          }
@@ -223,6 +245,13 @@ date_default_timezone_set('Asia/Jakarta');
             return $data;
          }
 
+         function tampil_transaksi_by_id($id) {
+            $kode = mysqli_query($this -> koneksi, "SELECT * FROM transaksi WHERE id = '$id'");
+            $data = mysqli_fetch_array($kode);
+
+            return $data;
+         }
+
          function hapus_user($id) {
             mysqli_query($this -> koneksi, "DELETE FROM user_right WHERE id = '$id'");
             return true;
@@ -250,6 +279,11 @@ date_default_timezone_set('Asia/Jakarta');
 
          function hapus_penyakit($id) {
             mysqli_query($this -> koneksi, "DELETE FROM penyakit WHERE id = '$id'");
+            return true;
+         }
+
+         function hapus_transaksi($id) {
+            mysqli_query($this -> koneksi, "DELETE FROM transaksi WHERE id = '$id'");
             return true;
          }
 
@@ -320,10 +354,30 @@ date_default_timezone_set('Asia/Jakarta');
             return true;
          }
          
-         function edit_obat($id, $nama, $stok, $tgl_exp) {
+         function edit_transaksi($id, $tgl_transaksi, $nama_pasien, $penyakit, $obat, $dokter, $total_harga, $dibayar, $kembalian, $tgl_bayar, $cara_bayar, $status) {
+            mysqli_query($this -> koneksi, "UPDATE transaksi SET 
+                tgl_transaksi = '$tgl_transaksi',
+                pasien = '$nama_pasien',
+                penyakit = '$penyakit',
+                obat = '$obat',
+                dokter = '$dokter',
+                total_harga = '$total_harga',
+                dibayar = '$dibayar',
+                kembali = '$kembalian',
+                tgl_bayar = '$tgl_bayar',
+                cara_bayar = '$cara_bayar',
+                status = '$status'
+
+                WHERE id='$id'
+            ");
+            return true;
+         }
+         
+         function edit_obat($id, $nama, $stok, $tgl_exp, $harga) {
             mysqli_query($this -> koneksi, "UPDATE obat SET 
                 nama = '$nama',
                 stok = '$stok',
+                harga = '$harga',
                 tgl_exp = '$tgl_exp'
 
                 WHERE id='$id'

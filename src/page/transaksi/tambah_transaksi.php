@@ -24,7 +24,7 @@
                             <label class="label">
                                 <span class="label-text">Tanggal Transaksi</span>
                             </label>
-                            <input name="tgl_lahir" type="date" placeholder="" class="input input-bordered w-full max-w-xl" required />
+                            <input name="tgl_transaksi" type="date" placeholder="" class="input input-bordered w-full max-w-xl" required />
                         </div>
                         <div class="form-control w-full max-w-xl">
                             <label class="label">
@@ -46,13 +46,31 @@
                             <label class="label">
                                 <span class="label-text">Jenis Penyakit</span>
                             </label>
-                            <select name="penyakit" style="height:40px;" class="select w-full select-bordered chosen" required>
+                            <select id="penyakit" name="penyakit" style="height:40px;" class="select w-full select-bordered chosen" required>
                                 <?php
                                 $data = mysqli_query($db->koneksi, "SELECT * FROM penyakit");
 
                                 while ($row = mysqli_fetch_array($data)) :
+                                    $kode_sakit = $row['kode'];
                                 ?>
-                                    <option value="<?= $row['kode']; ?>"><?= $row['nama']; ?></option>
+                                    <option value="<?= $kode_sakit; ?>"><?= $row['nama'] . " - Rp." . $row['biaya']; ?></option>
+                                <?php
+                                endwhile;
+                                ?>
+                            </select>
+                        </div>
+                        <div class="form-control w-full max-w-xl">
+                            <label class="label">
+                                <span class="label-text">Obat</span>
+                            </label>
+                            <select name="obat" style="height:40px;" class="select w-full select-bordered chosen" required>
+                                <?php
+                                $data = mysqli_query($db->koneksi, "SELECT * FROM obat");
+
+                                while ($row = mysqli_fetch_array($data)) :
+                                    $kode_sakit = $row['kode'];
+                                ?>
+                                    <option value="<?= $kode_sakit; ?>"><?= $row['nama'] . " - Rp." . $row['harga']; ?></option>
                                 <?php
                                 endwhile;
                                 ?>
@@ -76,35 +94,17 @@
                         </div>
                         <div class="form-control w-full max-w-xl">
                             <label class="label">
-                                <span class="label-text">Total Harga</span>
-                            </label>
-                            <input name="total_harga" type="text" placeholder="" class="input input-bordered w-full max-w-xl" required />
-                        </div>
-                        <div class="form-control w-full max-w-xl">
-                            <label class="label">
                                 <span class="label-text">Dibayar</span>
                             </label>
                             <input name="dibayar" type="text" placeholder="" class="input input-bordered w-full max-w-xl" required />
                         </div>
                         <div class="form-control w-full max-w-xl">
                             <label class="label">
-                                <span class="label-text">Kembalian</span>
-                            </label>
-                            <input name="kembalian" type="text" placeholder="" class="input input-bordered w-full max-w-xl" required />
-                        </div>
-                        <div class="form-control w-full max-w-xl">
-                            <label class="label">
-                                <span class="label-text">Tgl Dibayarkan</span>
-                            </label>
-                            <input name="tgl_bayar" type="date" placeholder="" class="input input-bordered w-full max-w-xl" required />
-                        </div>
-                        <div class="form-control w-full max-w-xl">
-                            <label class="label">
                                 <span class="label-text">Cara Bayar</span>
                             </label>
                             <select name="cara_bayar" class="select w-full select-bordered" required>
-                                <option value="S">Cash</option>
-                                <option value="B">E-Wallet</option>
+                                <option value="0">Cash</option>
+                                <option value="1">E-Wallet</option>
                             </select>
                         </div>
                         <div class="form-control w-full max-w-xl">
@@ -112,8 +112,8 @@
                                 <span class="label-text">Status</span>
                             </label>
                             <select name="status" class="select w-full select-bordered" required>
-                                <option value="S">Belum Bayar</option>
-                                <option value="B">Lunas</option>
+                                <option value="0">Belum Bayar</option>
+                                <option value="1">Lunas</option>
                             </select>
                         </div>
                     </div>
@@ -140,6 +140,30 @@
         $('.chosen-results .active-result, .chosen-single span').html(function() {
             var val = $(this).html().split(',');
             return '<strong>' + val[0] + '</strong><br/>' + val[1];
+        });
+    });
+
+    $(document).ready(function() {
+        load_data();
+
+        function load_data(sumber) {
+            $.ajax({
+                url: "transaksi/cari.php",
+                method: 'POST',
+                data: {
+                    sumber: sumber
+                },
+                success: function(data) {
+                    console.log('woi' + data);
+                    $('#total_harga').val(data);
+                }
+            });
+        }
+
+        $('#penyakit').change(function() {
+            var sumber = $('#penyakit').val();
+            load_data(sumber);
+
         });
     });
 </script>

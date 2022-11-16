@@ -53,6 +53,7 @@
             <th class="bg-green-200" style="text-align: center;">Tgl Transaksi</th>
             <th class="bg-green-200" style="text-align: center;">Nama Pasien</th>
             <th class="bg-green-200" style="text-align: center;">Jenis Penyakit</th>
+            <th class="bg-green-200" style="text-align: center;">Obat</th>
             <th class="bg-green-200" style="text-align: center;">Dokter Yang Menangani</th>
             <th class="bg-green-200" style="text-align: center;">Total Harga</th>
             <th class="bg-green-200" style="text-align: center;">Dibayar</th>
@@ -77,10 +78,10 @@
                 $status = 'Belum Dibayar';
             }
 
-            $cb = $row['status'];
-            if($cb == '1') {
+            $cb = $row['cara_bayar'];
+            if($cb == '0') {
                 $cara_bayar = 'Cash';
-            } else if($cb == '2'){
+            } else if($cb == '1'){
                 $cara_bayar = 'E-Wallet';
             }
             
@@ -90,12 +91,13 @@
               <th><?= $no++ ?></th>
               <td><?= $row['kode'] ?></td>
               <td><?= $row['tgl_transaksi'] ?></td>
-              <td><?= $row['pasien'] ?></td>
-              <td><?= $row['penyakit'] ?></td>
-              <td><?= $row['dokter'] ?></td>
-              <td><?= $row['total_harga'] ?></td>
-              <td><?= $row['dibayar'] ?></td>
-              <td><?= $row['kembali'] ?></td>
+              <td><?= $row['nama_pasien'] ?></td>
+              <td><?= $row['nama_sakit'] ?></td>
+              <td><?= $row['nama_obat'] ?></td>
+              <td><?= $row['nama_dokter'] ?></td>
+              <td><?= "Rp." . $row['total_harga'] ?></td>
+              <td><?= "Rp." . $row['dibayar'] ?></td>
+              <td><?= "Rp." . $row['kembali'] ?></td>
               <td><?= $row['tgl_bayar'] ?></td>
               <td><?= $cara_bayar ?></td>
               <td><?= $status ?></td>

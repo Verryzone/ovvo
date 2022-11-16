@@ -36,14 +36,21 @@ $data = $db->tampil_obat_by_id($_GET['id']);
                             </label>
                             <input value="<?= $data['stok']; ?>" name="stok" type="text" placeholder="" class="input input-bordered w-full max-w-xl" required />
                         </div>
-                    </div>
-                    <div class="px-10 py-10 grid justify-items-center w-full gap-x-10 grid-cols-1">
+                        <div class="form-control w-full max-w-xl">
+                            <label class="label">
+                                <span class="label-text">Harga</span>
+                            </label>
+                            <input value="<?= $data['harga']; ?>" name="harga" type="text" placeholder="" class="input input-bordered w-full max-w-xl" required />
+                        </div>
                         <div class="form-control w-full max-w-xl">
                         <label class="label">
-                                <span class="label-text">Tangga; Expired</span>
+                                <span class="label-text">Tanggal Expired</span>
                             </label>
                             <input value="<?= $data['tgl_exp']; ?>" name="tgl_exp" type="date" placeholder="" class="input input-bordered w-full max-w-xl" required />
                         </div>
+                    </div>
+                    <div class="px-10 py-10 grid justify-items-center w-full gap-x-10 grid-cols-1">
+                        
                     </div>
                     <div class="px-10 py-10 grid justify-items-center w-full gap-x-10 grid-cols-1">
                         <div class="form-control w-full my-6 px-40">

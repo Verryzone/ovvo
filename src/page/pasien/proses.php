@@ -1,4 +1,3 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <?php
     include '../../engine/koneksi.php';
     $db = new database();
@@ -29,8 +28,8 @@
 
         $kode = "P3" . $id_tgl;
 
-
         $tambah = $db->tambah_pasien($kode, $nama, $alamat, $tempat_lahir, $tgl_lahir, $jenis_kelamin, $agama, $telp, $status_nikah, $pekerjaan, $tgl_daftar, $diagnosa, $alergi, $jenis_kunjungan);
+
         if($tambah) {
             header('Location: ../home.php?page=data_pasien&alert=tambah');
         }

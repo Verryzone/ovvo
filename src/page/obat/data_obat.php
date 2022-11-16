@@ -53,6 +53,7 @@
             <th class="bg-green-200" style="text-align: center;">Nama Obat</th>
             <th class="bg-green-200" style="text-align: center;">Stok</th>
             <th class="bg-green-200" style="text-align: center;">Tanggal Expired</th>
+            <th class="bg-green-200" style="text-align: center;">Harga</th>
             <th class="bg-green-200" style="text-align: center;">Action</th>
           </tr>
         </thead>
@@ -70,6 +71,7 @@
               <td><?= $row['nama'] ?></td>
               <td><?= $row['stok'] ?></td>
               <td><?= $row['tgl_exp'] ?></td>
+              <td><?= $row['harga'] ?></td>
               <td>
                 <a class="btn" style="background:transparent ; color: black; border: 0; height: min-content;" href="../page/home.php?page=edit_obat&id=<?= $row['id']; ?>">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
